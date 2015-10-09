@@ -2,7 +2,7 @@
 //  GalleryViewController.swift
 //  photoPickerView
 //
-//  Created by RajaSoftwareLabs on 09/10/15.
+//  Created by Jatin on 09/10/15.
 //  Copyright © 2015 jatin. All rights reserved.
 //
 
@@ -10,26 +10,41 @@ import UIKit
 
 class GalleryViewController: UIViewController {
 
+  @IBOutlet weak var galleryCollectionView: UICollectionView!
+  var photosData: GalleryDataSource = GalleryDataSource()
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
+  override func viewDidAppear(animated: Bool) {
+    super.viewDidAppear(animated)
 
-    /*
-    // MARK: - Navigation
+    galleryCollectionView.delegate = self
+    galleryCollectionView.dataSource = self
+    galleryCollectionView.registerNib(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+  }
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
+}
+
+
+extension GalleryViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+  func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    let cell = galleryCollectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! PhotoCell
+    cell.photoImageView.image = photosData.images[indexPath.item]
+    return cell
+  }
+
+  func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return photosData.images.count
+  }
+
+  func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    return CGSize(width: 90, height: 90)
+  }
+
+  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    print(indexPath.item)
+  }
 
 }

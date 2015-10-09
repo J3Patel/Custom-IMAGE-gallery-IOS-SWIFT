@@ -14,6 +14,11 @@
 		E1432EB71BC7878D00412DFE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1432EB51BC7878D00412DFE /* LaunchScreen.storyboard */; };
 		E1432EC21BC7878D00412DFE /* photoPickerViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432EC11BC7878D00412DFE /* photoPickerViewTests.swift */; };
 		E1432ECD1BC7878D00412DFE /* photoPickerViewUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432ECC1BC7878D00412DFE /* photoPickerViewUITests.swift */; };
+		E1432EDC1BC787D900412DFE /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432EDA1BC787D900412DFE /* PhotoCell.swift */; settings = {ASSET_TAGS = (); }; };
+		E1432EDD1BC787D900412DFE /* PhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1432EDB1BC787D900412DFE /* PhotoCell.xib */; settings = {ASSET_TAGS = (); }; };
+		E1432EE01BC788D800412DFE /* GalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432EDE1BC788D800412DFE /* GalleryViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		E1432EE11BC788D800412DFE /* GalleryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = E1432EDF1BC788D800412DFE /* GalleryViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		E1432EE31BC78FE200412DFE /* GalleryDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432EE21BC78FE200412DFE /* GalleryDataSource.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +52,11 @@
 		E1432EC81BC7878D00412DFE /* photoPickerViewUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = photoPickerViewUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1432ECC1BC7878D00412DFE /* photoPickerViewUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = photoPickerViewUITests.swift; sourceTree = "<group>"; };
 		E1432ECE1BC7878D00412DFE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E1432EDA1BC787D900412DFE /* PhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
+		E1432EDB1BC787D900412DFE /* PhotoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoCell.xib; sourceTree = "<group>"; };
+		E1432EDE1BC788D800412DFE /* GalleryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryViewController.swift; sourceTree = "<group>"; };
+		E1432EDF1BC788D800412DFE /* GalleryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GalleryViewController.xib; sourceTree = "<group>"; };
+		E1432EE21BC78FE200412DFE /* GalleryDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GalleryDataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +113,11 @@
 				E1432EB31BC7878D00412DFE /* Assets.xcassets */,
 				E1432EB51BC7878D00412DFE /* LaunchScreen.storyboard */,
 				E1432EB81BC7878D00412DFE /* Info.plist */,
+				E1432EDA1BC787D900412DFE /* PhotoCell.swift */,
+				E1432EDB1BC787D900412DFE /* PhotoCell.xib */,
+				E1432EDE1BC788D800412DFE /* GalleryViewController.swift */,
+				E1432EDF1BC788D800412DFE /* GalleryViewController.xib */,
+				E1432EE21BC78FE200412DFE /* GalleryDataSource.swift */,
 			);
 			path = photoPickerView;
 			sourceTree = "<group>";
@@ -228,6 +243,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E1432EE11BC788D800412DFE /* GalleryViewController.xib in Resources */,
+				E1432EDD1BC787D900412DFE /* PhotoCell.xib in Resources */,
 				E1432EB71BC7878D00412DFE /* LaunchScreen.storyboard in Resources */,
 				E1432EB41BC7878D00412DFE /* Assets.xcassets in Resources */,
 				E1432EB21BC7878D00412DFE /* Main.storyboard in Resources */,
@@ -256,6 +273,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1432EAF1BC7878D00412DFE /* ViewController.swift in Sources */,
+				E1432EE01BC788D800412DFE /* GalleryViewController.swift in Sources */,
+				E1432EE31BC78FE200412DFE /* GalleryDataSource.swift in Sources */,
+				E1432EDC1BC787D900412DFE /* PhotoCell.swift in Sources */,
 				E1432EAD1BC7878D00412DFE /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +503,7 @@
 				E1432ED31BC7878D00412DFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1432ED41BC7878D00412DFE /* Build configuration list for PBXNativeTarget "photoPickerViewTests" */ = {
 			isa = XCConfigurationList;
@@ -491,6 +512,7 @@
 				E1432ED61BC7878D00412DFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E1432ED71BC7878D00412DFE /* Build configuration list for PBXNativeTarget "photoPickerViewUITests" */ = {
 			isa = XCConfigurationList;
@@ -499,6 +521,7 @@
 				E1432ED91BC7878D00412DFE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
