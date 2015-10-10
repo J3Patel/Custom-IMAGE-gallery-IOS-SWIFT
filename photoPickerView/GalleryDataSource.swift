@@ -52,11 +52,13 @@ public class GalleryDataSource {
                 let imageSize = CGSize(width: imageAsset.pixelWidth, height: imageAsset.pixelHeight)
                 let options = PHImageRequestOptions()
                 options.deliveryMode = PHImageRequestOptionsDeliveryMode.FastFormat
-                
-                imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
-                    self.images.append(image!)
-                    self.delegate.dataDidChange()
-                })
+                if imageAsset.mediaType == PHAssetMediaType.Image {
+                    imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
+                        self.images.append(image!)
+                        self.delegate.dataDidChange()
+                    })
+                    
+                }
             }
         })
     }
@@ -67,34 +69,45 @@ public class GalleryDataSource {
         let imageManager = PHCachingImageManager()
         fetchResult.enumerateObjectsUsingBlock({ (object, count, unsafePointer) -> Void in
             if object is PHAsset {
-                let imageAsset = object as! PHAsset
+                let imageAsset: PHAsset = object as! PHAsset
                 let imageSize = CGSize(width: imageAsset.pixelWidth, height: imageAsset.pixelHeight)
                 let options = PHImageRequestOptions()
                 options.deliveryMode = PHImageRequestOptionsDeliveryMode.FastFormat
-                
-                imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
-                    self.images.append(image!)
-                    self.delegate.dataDidChange()
-                })
+                if imageAsset.mediaType == PHAssetMediaType.Image { // if check for to show only images
+                    imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
+                        self.images.append(image!)
+                        self.delegate.dataDidChange()
+                    })
+                    
+                }
             }
         })
     }
     
     func getAlbums() -> [String] {
-    
+        
+        
         var albums = PHAssetCollection.fetchAssetCollectionsWithType(.SmartAlbum, subtype: .Any, options: nil)
         
         albums.enumerateObjectsUsingBlock { (object, Indexable, error) -> Void in
-        let aa =  object as! PHAssetCollection
-//                print(aa.localizedTitle)
+            //
+            let aa =  object as! PHAssetCollection
             let vv = PHAsset.fetchAssetsInAssetCollection(aa, options: nil)
             if let albumName = aa.localizedTitle where vv.count > 0 {
-                self.albumsName.append(albumName)
-                self.albumsAssets.append(vv)
+                var doesContainImages = false
+                vv.enumerateObjectsUsingBlock({ (object, index, pointer) -> Void in
+                    let asset: PHAsset = object as! PHAsset
+                    if asset.mediaType == PHAssetMediaType.Image {
+                        doesContainImages = true
+                    }
+                })
+                if doesContainImages {
+                    self.albumsName.append(albumName)
+                    self.albumsAssets.append(vv)
+                }
+                
                 
             }
-            
-            
         }
         
         albums = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: nil)
@@ -102,8 +115,17 @@ public class GalleryDataSource {
             let aa =  object as! PHAssetCollection
             let vv = PHAsset.fetchAssetsInAssetCollection(aa, options: nil)
             if let albumName = aa.localizedTitle where vv.count > 0 {
-                self.albumsName.append(albumName)
-                self.albumsAssets.append(vv)
+                var doesContainImages = false
+                vv.enumerateObjectsUsingBlock({ (object, index, pointer) -> Void in
+                    let asset: PHAsset = object as! PHAsset
+                    if asset.mediaType == PHAssetMediaType.Image {
+                        doesContainImages = true
+                    }
+                })
+                if doesContainImages {
+                    self.albumsName.append(albumName)
+                    self.albumsAssets.append(vv)
+                }
             }
         }
         return albumsName
