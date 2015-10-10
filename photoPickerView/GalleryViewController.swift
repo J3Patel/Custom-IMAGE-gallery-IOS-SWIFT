@@ -9,7 +9,7 @@
 import UIKit
 
 class GalleryViewController: UIViewController, PhotoGalleryDelegate {
-    let NUMBER_OF_CELLS_IN_ROW: CGFloat = 5
+    let NUMBER_OF_CELLS_IN_ROW: CGFloat = 3
     let interSpacingBetweenItem: CGFloat = 1
     
     @IBOutlet weak var titleHeader: UILabel!
@@ -24,6 +24,21 @@ class GalleryViewController: UIViewController, PhotoGalleryDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        galleryCollectionView.delegate = self
+        galleryCollectionView.dataSource = self
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        layout.itemSize = getCollectionViewCellSize()
+        layout.minimumInteritemSpacing = interSpacingBetweenItem
+        layout.minimumLineSpacing = interSpacingBetweenItem
+        galleryCollectionView.collectionViewLayout = layout
+        
+        galleryCollectionView.registerNib(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "cell")
+        albumsTableView.registerNib(UINib(nibName: "AlbumTableViewCell", bundle: nil), forCellReuseIdentifier: "albumCell")
+        albumsTableView.delegate = self
+        albumsTableView.dataSource = self
+        albumsTableView.reloadData()
+        albumsTableView.tableFooterView = UIView()
         photosData.delegate = self
         // Do any additional setup after loading the view.
     }
@@ -31,21 +46,13 @@ class GalleryViewController: UIViewController, PhotoGalleryDelegate {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         collectionViewHeight = UIScreen.mainScreen().bounds.height - 64
-//        collectionViewBottomConstraint.constant = collectionViewHeight
-//        collectionViewTopConstraint.constant = -collectionViewHeight
+        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         
-        galleryCollectionView.delegate = self
-        galleryCollectionView.dataSource = self
-        galleryCollectionView.registerNib(UINib(nibName: "PhotoCell", bundle: nil), forCellWithReuseIdentifier: "cell")
-        albumsTableView.registerNib(UINib(nibName: "AlbumTableViewCell", bundle: nil), forCellReuseIdentifier: "albumCell")
-        albumsTableView.delegate = self
-        albumsTableView.dataSource = self
-        albumsTableView.reloadData()
-        albumsTableView.tableFooterView = UIView()
+        
         
     }
     
@@ -68,7 +75,12 @@ class GalleryViewController: UIViewController, PhotoGalleryDelegate {
         }
         
     }
-
+    
+    func getCollectionViewCellSize() -> CGSize {
+        let size = (galleryCollectionView.bounds.width - (NUMBER_OF_CELLS_IN_ROW  * interSpacingBetweenItem)) / NUMBER_OF_CELLS_IN_ROW
+        return CGSize(width: size, height: size)
+    }
+    
 }
 
 extension GalleryViewController {
@@ -115,8 +127,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-        let size = (galleryCollectionView.bounds.width - (NUMBER_OF_CELLS_IN_ROW  * interSpacingBetweenItem)) / NUMBER_OF_CELLS_IN_ROW
-        return CGSize(width: size, height: size)
+        return getCollectionViewCellSize()
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAtIndex section: Int) -> CGFloat {
