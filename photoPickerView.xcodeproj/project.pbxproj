@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79C95B3C1BC9119A00B9CFF7 /* AlbumTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79C95B3A1BC9119A00B9CFF7 /* AlbumTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
+		79C95B3D1BC9119A00B9CFF7 /* AlbumTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 79C95B3B1BC9119A00B9CFF7 /* AlbumTableViewCell.xib */; settings = {ASSET_TAGS = (); }; };
+		79C95B3F1BC9294E00B9CFF7 /* cameraTitle.png in Resources */ = {isa = PBXBuildFile; fileRef = 79C95B3E1BC9294E00B9CFF7 /* cameraTitle.png */; settings = {ASSET_TAGS = (); }; };
 		E1432EAD1BC7878D00412DFE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432EAC1BC7878D00412DFE /* AppDelegate.swift */; };
 		E1432EAF1BC7878D00412DFE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1432EAE1BC7878D00412DFE /* ViewController.swift */; };
 		E1432EB21BC7878D00412DFE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1432EB01BC7878D00412DFE /* Main.storyboard */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		79C95B3A1BC9119A00B9CFF7 /* AlbumTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumTableViewCell.swift; sourceTree = "<group>"; };
+		79C95B3B1BC9119A00B9CFF7 /* AlbumTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumTableViewCell.xib; sourceTree = "<group>"; };
+		79C95B3E1BC9294E00B9CFF7 /* cameraTitle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cameraTitle.png; sourceTree = "<group>"; };
 		E1432EA91BC7878D00412DFE /* photoPickerView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = photoPickerView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1432EAC1BC7878D00412DFE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1432EAE1BC7878D00412DFE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,10 +120,13 @@
 				E1432EB51BC7878D00412DFE /* LaunchScreen.storyboard */,
 				E1432EB81BC7878D00412DFE /* Info.plist */,
 				E1432EDA1BC787D900412DFE /* PhotoCell.swift */,
+				79C95B3E1BC9294E00B9CFF7 /* cameraTitle.png */,
 				E1432EDB1BC787D900412DFE /* PhotoCell.xib */,
 				E1432EDE1BC788D800412DFE /* GalleryViewController.swift */,
 				E1432EDF1BC788D800412DFE /* GalleryViewController.xib */,
 				E1432EE21BC78FE200412DFE /* GalleryDataSource.swift */,
+				79C95B3A1BC9119A00B9CFF7 /* AlbumTableViewCell.swift */,
+				79C95B3B1BC9119A00B9CFF7 /* AlbumTableViewCell.xib */,
 			);
 			path = photoPickerView;
 			sourceTree = "<group>";
@@ -245,9 +254,11 @@
 			files = (
 				E1432EE11BC788D800412DFE /* GalleryViewController.xib in Resources */,
 				E1432EDD1BC787D900412DFE /* PhotoCell.xib in Resources */,
+				79C95B3F1BC9294E00B9CFF7 /* cameraTitle.png in Resources */,
 				E1432EB71BC7878D00412DFE /* LaunchScreen.storyboard in Resources */,
 				E1432EB41BC7878D00412DFE /* Assets.xcassets in Resources */,
 				E1432EB21BC7878D00412DFE /* Main.storyboard in Resources */,
+				79C95B3D1BC9119A00B9CFF7 /* AlbumTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +288,7 @@
 				E1432EE31BC78FE200412DFE /* GalleryDataSource.swift in Sources */,
 				E1432EDC1BC787D900412DFE /* PhotoCell.swift in Sources */,
 				E1432EAD1BC7878D00412DFE /* AppDelegate.swift in Sources */,
+				79C95B3C1BC9119A00B9CFF7 /* AlbumTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +430,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = photoPickerView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jatin.photoPickerView;
@@ -429,6 +442,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = photoPickerView/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jatin.photoPickerView;

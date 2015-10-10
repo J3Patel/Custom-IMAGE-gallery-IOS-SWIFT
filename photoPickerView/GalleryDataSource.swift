@@ -10,11 +10,18 @@ import Foundation
 import Photos
 import UIKit
 
+protocol PhotoGalleryDelegate {
+    func dataDidChange()
+}
+
 public class GalleryDataSource {
     //  let assetsLibrary = ALAssetsLibrary()
     var photoAssets: PHFetchResult?
     var images: [UIImage] = [UIImage]()
-    
+    var selectedAlbum = "All Photos"
+    var albumsName = [String]()
+    var albumsAssets = [PHFetchResult]()
+    var delegate: PhotoGalleryDelegate!
     init() {
         authorizeForAccess { () -> Void in
             //success
@@ -48,16 +55,63 @@ public class GalleryDataSource {
                 
                 imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
                     self.images.append(image!)
+                    self.delegate.dataDidChange()
                 })
             }
         })
     }
     
-    func getAlbums() {
+    
+    func getImagesFromPHFetchResult(fetchResult: PHFetchResult) {
+        images.removeAll()
+        let imageManager = PHCachingImageManager()
+        fetchResult.enumerateObjectsUsingBlock({ (object, count, unsafePointer) -> Void in
+            if object is PHAsset {
+                let imageAsset = object as! PHAsset
+                let imageSize = CGSize(width: imageAsset.pixelWidth, height: imageAsset.pixelHeight)
+                let options = PHImageRequestOptions()
+                options.deliveryMode = PHImageRequestOptionsDeliveryMode.FastFormat
+                
+                imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
+                    self.images.append(image!)
+                    self.delegate.dataDidChange()
+                })
+            }
+        })
+    }
+    
+    func getAlbums() -> [String] {
+    
+        var albums = PHAssetCollection.fetchAssetCollectionsWithType(.SmartAlbum, subtype: .Any, options: nil)
         
-        let albums = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: nil)
-        let aa = albums.objectAtIndex(0) as! PHAssetCollection
-        print(aa.localizedTitle)
+        albums.enumerateObjectsUsingBlock { (object, Indexable, error) -> Void in
+        let aa =  object as! PHAssetCollection
+//                print(aa.localizedTitle)
+            let vv = PHAsset.fetchAssetsInAssetCollection(aa, options: nil)
+            if let albumName = aa.localizedTitle where vv.count > 0 {
+                self.albumsName.append(albumName)
+                self.albumsAssets.append(vv)
+                
+            }
+            
+            
+        }
+        
+        albums = PHAssetCollection.fetchAssetCollectionsWithType(.Album, subtype: .Any, options: nil)
+        albums.enumerateObjectsUsingBlock { (object, Indexable, error) -> Void in
+            let aa =  object as! PHAssetCollection
+            let vv = PHAsset.fetchAssetsInAssetCollection(aa, options: nil)
+            if let albumName = aa.localizedTitle where vv.count > 0 {
+                self.albumsName.append(albumName)
+                self.albumsAssets.append(vv)
+            }
+        }
+        return albumsName
+    }
+    
+    func updateImagesForAlbum(index: Int) {
+        print(albumsAssets[index])
+        getImagesFromPHFetchResult(albumsAssets[index])
     }
     
     class func getHighQualityImage(imageAssets: AnyObject, getImage:(image: UIImage) -> Void) {
