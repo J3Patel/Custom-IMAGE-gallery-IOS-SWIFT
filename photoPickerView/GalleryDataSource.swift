@@ -22,6 +22,9 @@ public class GalleryDataSource {
     var albumsName = [String]()
     var albumsAssets = [PHFetchResult]()
     var delegate: PhotoGalleryDelegate!
+    var albumCount = [Int]()
+    var albumCoverImages = [UIImage]()
+    
     init() {
         authorizeForAccess { () -> Void in
             //success
@@ -104,6 +107,8 @@ public class GalleryDataSource {
                 if doesContainImages {
                     self.albumsName.append(albumName)
                     self.albumsAssets.append(vv)
+                    self.albumCount.append(vv.count)
+                    self.saveCoverImageForAlbums(vv.objectAtIndex(vv.count - 1))
                 }
                 
                 
@@ -125,10 +130,27 @@ public class GalleryDataSource {
                 if doesContainImages {
                     self.albumsName.append(albumName)
                     self.albumsAssets.append(vv)
+                    self.albumCount.append(vv.count)
+                    self.saveCoverImageForAlbums(vv.objectAtIndex(vv.count - 1))
                 }
             }
         }
         return albumsName
+    }
+    
+    func saveCoverImageForAlbums(asset: AnyObject) {
+        let imageManager = PHCachingImageManager()
+        let imageAsset = asset as! PHAsset
+        let imageSize = CGSize(width: imageAsset.pixelWidth, height: imageAsset.pixelHeight)
+        let options = PHImageRequestOptions()
+        options.deliveryMode = PHImageRequestOptionsDeliveryMode.FastFormat
+        if imageAsset.mediaType == PHAssetMediaType.Image {
+            imageManager.requestImageForAsset(imageAsset, targetSize: imageSize, contentMode: PHImageContentMode.AspectFit, options: options, resultHandler: { (image, info) -> Void in
+                self.albumCoverImages.append(image!)
+                self.delegate.dataDidChange()
+            })
+            
+        }
     }
     
     func updateImagesForAlbum(index: Int) {

@@ -93,7 +93,18 @@ extension GalleryViewController {
 extension GalleryViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = albumsTableView.dequeueReusableCellWithIdentifier("albumCell") as! AlbumTableViewCell
-        cell.albumNameLabel.text = photosData.albumsName[indexPath.row]
+        if photosData.albumsName.count > indexPath.row {
+            cell.albumNameLabel.text = photosData.albumsName[indexPath.row]
+        }
+        
+        if photosData.albumCount.count > indexPath.row {
+            cell.countLabel.text = "\(photosData.albumCount[indexPath.row])"
+        }
+        
+        if photosData.albumCoverImages.count > indexPath.row {
+            cell.albumCoeverImageView.image = photosData.albumCoverImages[indexPath.row]
+        }
+        
         return cell
     }
     
@@ -135,6 +146,7 @@ extension GalleryViewController: UICollectionViewDelegateFlowLayout, UICollectio
     }
     
     func imageSelected(image: UIImage) {
+        
     }
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {

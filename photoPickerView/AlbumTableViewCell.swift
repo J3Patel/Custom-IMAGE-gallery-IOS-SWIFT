@@ -11,6 +11,7 @@ import UIKit
 class AlbumTableViewCell: UITableViewCell {
 
     @IBOutlet weak var albumNameLabel: UILabel!
+    @IBOutlet weak var countLabel: UILabel!
     @IBOutlet weak var albumCoeverImageView: UIImageView!
     
     override func awakeFromNib() {

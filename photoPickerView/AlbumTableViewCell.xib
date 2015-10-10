@@ -14,32 +14,41 @@
                 <rect key="frame" x="0.0" y="0.0" width="315" height="87"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Om-F5-Khy">
-                        <rect key="frame" x="236" y="8" width="71" height="71"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="9Om-F5-Khy">
+                        <rect key="frame" x="8" y="8" width="71" height="71"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="71" id="II1-Ib-lII"/>
-                            <constraint firstAttribute="height" constant="71" id="pgu-wD-vY1"/>
+                            <constraint firstAttribute="width" constant="71" id="Q1v-nt-cm0"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Album Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cw4-t6-zI0">
-                        <rect key="frame" x="8" y="33" width="220" height="21"/>
+                        <rect key="frame" x="87" y="27" width="220" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="754" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAA-H3-H5w">
+                        <rect key="frame" x="87" y="48" width="220" height="12"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="9Om-F5-Khy" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="7m6-Bl-MWd"/>
-                    <constraint firstItem="cw4-t6-zI0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="KIT-IB-qMH"/>
-                    <constraint firstItem="9Om-F5-Khy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="RKi-6S-r2g"/>
-                    <constraint firstItem="9Om-F5-Khy" firstAttribute="leading" secondItem="cw4-t6-zI0" secondAttribute="trailing" constant="8" id="clo-Ac-956"/>
-                    <constraint firstItem="cw4-t6-zI0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="kpo-WZ-Jqe"/>
-                    <constraint firstItem="9Om-F5-Khy" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="u7R-oB-joy"/>
+                    <constraint firstItem="YAA-H3-H5w" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="2sV-zj-r2S"/>
+                    <constraint firstItem="cw4-t6-zI0" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="Oo4-Zf-SDD"/>
+                    <constraint firstItem="9Om-F5-Khy" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="RNK-26-0cR"/>
+                    <constraint firstItem="9Om-F5-Khy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="Z3R-Bw-Nie"/>
+                    <constraint firstItem="YAA-H3-H5w" firstAttribute="top" secondItem="cw4-t6-zI0" secondAttribute="bottom" id="geS-kR-49g"/>
+                    <constraint firstItem="cw4-t6-zI0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" constant="-6" id="iDY-s9-A01"/>
+                    <constraint firstItem="YAA-H3-H5w" firstAttribute="leading" secondItem="9Om-F5-Khy" secondAttribute="trailing" constant="8" id="iWX-TU-KSI"/>
+                    <constraint firstItem="9Om-F5-Khy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="iZR-MA-FKw"/>
+                    <constraint firstItem="cw4-t6-zI0" firstAttribute="leading" secondItem="9Om-F5-Khy" secondAttribute="trailing" constant="8" id="mOP-gY-HhH"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="albumCoeverImageView" destination="9Om-F5-Khy" id="edE-3a-VcA"/>
                 <outlet property="albumNameLabel" destination="cw4-t6-zI0" id="cTL-ZS-GMB"/>
+                <outlet property="countLabel" destination="YAA-H3-H5w" id="Hta-GG-fvq"/>
             </connections>
             <point key="canvasLocation" x="437.5" y="295"/>
         </tableViewCell>
